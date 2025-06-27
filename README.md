@@ -5,8 +5,6 @@ This guide explains how to run the [`octra-labs/wallet-gen`](https://github.com/
 
 ### Building from Source
 
-Use this option if you want to modify the code or build the latest version.
-
 ### 1. Install Bun on your VPS
 
 ```bash
