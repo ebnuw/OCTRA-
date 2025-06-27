@@ -1,4 +1,4 @@
-# Octra Wallet Generator
+# Official Octra Wallet Generator Toutorial
 
 A secure wallet generator for Octra blockchain.
 
