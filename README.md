@@ -11,11 +11,12 @@ This guide will walk you through setting up and running the [octra-labs/wallet-g
 3. [Cloning the Repository](#cloning-the-repository)
 4. [Environment Configuration](#environment-configuration)
 5. [Installing Dependencies](#installing-dependencies)
-6. [Running the Application](#running-the-application)
-7. [Verification](#verification)
-8. [Automating Startup](#automating-startup)
-9. [Security Considerations](#security-considerations)
-10. [Uploading the Markdown File](#uploading-the-markdown-file)
+6. [Installing Bun](#installing-bun)
+7. [Running the Application](#running-the-application)
+8. [Verification](#verification)
+9. [Automating Startup](#automating-startup)
+10. [Security Considerations](#security-considerations)
+11. [Uploading the Markdown File](#uploading-the-markdown-file)
 
 ---
 
@@ -110,32 +111,54 @@ This guide will walk you through setting up and running the [octra-labs/wallet-g
 
 ---
 
-## 5. Running the Application
+## 5. Installing Bun
+
+The `wallet-gen` project uses [Bun](https://bun.sh), a fast JavaScript runtime. You need to install it first.
+
+1. **Install Bun**
+
+   ```bash
+   curl -fsSL https://bun.sh/install | bash
+   ```
+
+2. **Reload shell config**
+
+   ```bash
+   source ~/.bashrc  # or source ~/.zshrc if you use Zsh
+   ```
+
+3. **Verify Bun installation**
+
+   ```bash
+   bun -v
+   ```
+
+---
+
+## 6. Running the Application
 
 1. **Development mode**
 
    ```bash
-   npm run dev
+   bun dev
    ```
 
-2. **Production build**
+2. **Production build and start**
 
    ```bash
-   npm run build
-   npm start
+   bun build --compile --outfile=wallet-generator ./wallet_generator.ts
+   bun wallet_generator.ts
    ```
 
-Your application should now be running on port `8888` by default.
+---
+
+## 7. Verification
+
+Open your browser and navigate to `http://your_vps_ip:3000` or your domain to verify the wallet generator is operational.
 
 ---
 
-## 6. Verification
-
-Open your browser and navigate to `http://your_vps_ip:8888` or your domain to verify the wallet generator is operational.
-
----
-
-## 7. Automating Startup
+## 8. Automating Startup
 
 1. **Create a systemd service** (`/etc/systemd/system/wallet-gen.service`):
 
@@ -146,7 +169,7 @@ Open your browser and navigate to `http://your_vps_ip:8888` or your domain to ve
 
    [Service]
    WorkingDirectory=/home/username/wallet-gen
-   ExecStart=/usr/bin/npm start
+   ExecStart=/root/.bun/bin/bun wallet_generator.ts
    Restart=always
    User=username
    Environment=NODE_ENV=production
@@ -172,7 +195,7 @@ Open your browser and navigate to `http://your_vps_ip:8888` or your domain to ve
 
 ---
 
-## 8. Security Considerations
+## 9. Security Considerations
 
 - Use a firewall (e.g., `ufw`) to restrict unused ports.
 - Store environment secrets securely (consider vault solutions).
@@ -180,7 +203,7 @@ Open your browser and navigate to `http://your_vps_ip:8888` or your domain to ve
 
 ---
 
-## 9. Uploading the Markdown File
+## 10. Uploading the Markdown File
 
 After customizing this guide, save it as `wallet-gen-setup.md` in your repository root:
 
