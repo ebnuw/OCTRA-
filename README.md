@@ -125,13 +125,13 @@ This guide will walk you through setting up and running the [octra-labs/wallet-g
    npm start
    ```
 
-Your application should now be running on port `3000` by default.
+Your application should now be running on port `8888` by default.
 
 ---
 
 ## 6. Verification
 
-Open your browser and navigate to `http://your_vps_ip:3000` or your domain to verify the wallet generator is operational.
+Open your browser and navigate to `http://your_vps_ip:8888` or your domain to verify the wallet generator is operational.
 
 ---
 
